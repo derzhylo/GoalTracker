@@ -25,10 +25,7 @@ public class AdminController {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-
-
-
-
+    
     @RequestMapping(value = "/admin", method = RequestMethod.GET)
     public String admin() {
         return "admin";
@@ -46,13 +43,6 @@ public class AdminController {
     public String deleteUser(@PathVariable("id") int id){
         userService.removeUser(id);
         return "redirect:/admin";
-    }
-
-    @RequestMapping(value = "/editUser/{id}")
-    public String editUser(@PathVariable("id") int id, Model model){
-        model.addAttribute("userList", userService.findAll());
-        model.addAttribute("user",userService.findOne(id));
-        return "/admin";
     }
 
     @RequestMapping(value = "/showInfoUser/{id}")

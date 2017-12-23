@@ -18,13 +18,12 @@
                     <td>id</td>
                     <td>userName</td>
                     <td>delete</td>
-                    <td>edit</td>
+
                 </tr>
                 <c:forEach items="${allUsers}" var="user">
                     <tr>
                         <td>${user.id}</td>
                         <td><a href="/showInfoUser/${user.id}" target="_blank">${user.username}</a></td>
-                        <td><a href="<c:url value='/editUser/${user.id}'/>">edit</a></td>
                         <td><a href="<c:url value='/deleteUser/${user.id}'/>">delete</a></td>
                     </tr>
                 </c:forEach>
