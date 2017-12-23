@@ -37,7 +37,6 @@ public class AccountController {
         int id;
         Date dateStart;
         Date dateDeadline;
-        boolean statist=false;
         List<Account> accounts = accountService.findGoalsByUserId(byUsername.getId());
         for (int i = 0; i < accounts.size(); i++) {
 
@@ -55,18 +54,11 @@ public class AccountController {
                 daysChecked = days;
             }
 
-
             if (dateDeadline.before(date) == true) {
                 String newReasonOfFailed = new String("Failed Deadline");
                 accountService.updateStatusFailed(id, true, true, dateDeadline, daysChecked, newReasonOfFailed);
-//                statist=true;
             }
         }
-        if (statist==true){
-            User user = userService.findOne(byUsername.getId());
-            int newFinishG = user.getFinishedAllGoals()+1;
-            int newFeilG = user.getFinishedFailedGoals()+1;
-            userService.updateFinishedFailedGoals(byUsername.getId(), newFinishG, newFeilG);}
 
         model.addAttribute("currentUser", byUsername);
         model.addAttribute("emptyGoal",new Account());
